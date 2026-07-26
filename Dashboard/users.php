@@ -450,7 +450,6 @@ include 'header.php';
 
 
         </div> <!-- /.admin-wrapper -->
-    </div>
 
     <!-- User Modal (Add/Edit) -->
     <div class="modal fade" id="userModal" tabindex="-1">
@@ -536,10 +535,164 @@ include 'header.php';
         </div>
     </div>
 
-    <!-- Page-specific Component -->
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('userTable', () => ({
+                users: [
+                    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'admin', status: 'active', lastActive: '2025-01-15', avatar: 'assets/images/avatar-placeholder.svg' },
+                    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'user', status: 'active', lastActive: '2025-01-15', avatar: 'assets/images/avatar-placeholder.svg' },
+                    { id: 3, name: 'Mike Johnson', email: 'mike@example.com', role: 'user', status: 'inactive', lastActive: '2025-01-14', avatar: 'assets/images/avatar-placeholder.svg' },
+                    { id: 4, name: 'Sarah Williams', email: 'sarah@example.com', role: 'moderator', status: 'pending', lastActive: '2025-01-13', avatar: 'assets/images/avatar-placeholder.svg' },
+                    { id: 5, name: 'Alex Brown', email: 'alex@example.com', role: 'user', status: 'active', lastActive: '2025-01-12', avatar: 'assets/images/avatar-placeholder.svg' },
+                ],
+                searchQuery: '',
+                statusFilter: '',
+                roleFilter: '',
+                sortField: 'name',
+                sortDirection: 'asc',
+                currentPage: 1,
+                itemsPerPage: 5,
+                selectedUsers: [],
 
-    <!-- Main App Script -->
+                get stats() {
+                    return {
+                        total: this.users.length,
+                        active: this.users.filter(u => u.status === 'active').length,
+                        newThisMonth: 12,
+                        activePercentage: (this.users.filter(u => u.status === 'active').length / this.users.length) * 100
+                    }
+                },
 
-<script defer="" src="../../beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496-1" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"cd0b4b3a733644fc843ef0b185f98241","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+                get departmentStats() {
+                    return [
+                        { name: 'Engineering', count: 24, percentage: 40, color: '#4f46e5' },
+                        { name: 'Marketing', count: 18, percentage: 30, color: '#059669' },
+                        { name: 'Sales', count: 12, percentage: 20, color: '#d97706' },
+                        { name: 'Support', count: 6, percentage: 10, color: '#dc2626' }
+                    ];
+                },
+
+                get recentActivities() {
+                    return [
+                        { id: 1, user: 'John Doe', action: 'logged in', type: 'login', icon: 'box-arrow-in-right', time: '2 min ago', details: 'From IP 192.168.1.1' },
+                        { id: 2, user: 'Jane Smith', action: 'registered', type: 'register', icon: 'person-plus', time: '5 min ago', details: 'New account created' },
+                        { id: 3, user: 'Mike Johnson', action: 'logged out', type: 'logout', icon: 'box-arrow-right', time: '10 min ago', details: 'Session ended' },
+                        { id: 4, user: 'Sarah Williams', action: 'updated profile', type: 'update', icon: 'pencil', time: '15 min ago', details: 'Changed avatar' }
+                    ];
+                },
+
+                get systemAlerts() {
+                    return [
+                        { id: 1, type: 'warning', title: 'Storage Warning', message: 'Server storage is at 85% capacity', time: '1 hour ago' },
+                        { id: 2, type: 'info', title: 'New Update', message: 'System update scheduled for tonight', time: '3 hours ago' }
+                    ];
+                },
+
+                get filteredUsers() {
+                    let items = [...this.users];
+                    if (this.searchQuery) {
+                        items = items.filter(u => 
+                            u.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                            u.email.toLowerCase().includes(this.searchQuery.toLowerCase())
+                        );
+                    }
+                    if (this.statusFilter) {
+                        items = items.filter(u => u.status === this.statusFilter);
+                    }
+                    if (this.roleFilter) {
+                        items = items.filter(u => u.role === this.roleFilter);
+                    }
+                    items.sort((a, b) => {
+                        let valA = a[this.sortField], valB = b[this.sortField];
+                        if (typeof valA === 'string') valA = valA.toLowerCase();
+                        if (typeof valB === 'string') valB = valB.toLowerCase();
+                        if (valA < valB) return this.sortDirection === 'asc' ? -1 : 1;
+                        if (valA > valB) return this.sortDirection === 'asc' ? 1 : -1;
+                        return 0;
+                    });
+                    return items;
+                },
+
+                get totalPages() {
+                    return Math.ceil(this.filteredUsers.length / this.itemsPerPage);
+                },
+
+                get paginatedUsers() {
+                    const start = (this.currentPage - 1) * this.itemsPerPage;
+                    return this.filteredUsers.slice(start, start + this.itemsPerPage);
+                },
+
+                get visiblePages() {
+                    const pages = [];
+                    for (let i = 1; i <= this.totalPages; i++) pages.push(i);
+                    return pages;
+                },
+
+                init() { this.currentPage = 1; },
+
+                filterUsers() { this.currentPage = 1; },
+
+                sortBy(field) {
+                    if (this.sortField === field) {
+                        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        this.sortField = field;
+                        this.sortDirection = 'asc';
+                    }
+                },
+
+                goToPage(page) {
+                    if (page >= 1 && page <= this.totalPages) this.currentPage = page;
+                },
+
+                toggleAll(checked) {
+                    this.selectedUsers = checked ? this.filteredUsers.map(u => u.id) : [];
+                },
+
+                toggleUser(id) {
+                    const idx = this.selectedUsers.indexOf(id);
+                    if (idx > -1) this.selectedUsers.splice(idx, 1);
+                    else this.selectedUsers.push(id);
+                },
+
+                editUser(user) {
+                    alert('Edit user: ' + user.name);
+                },
+
+                viewUser(user) {
+                    alert('Viewing user: ' + user.name);
+                },
+
+                deleteUser(user) {
+                    if (confirm('Delete user "' + user.name + '"?')) {
+                        this.users = this.users.filter(u => u.id !== user.id);
+                    }
+                },
+
+                exportUsers() {
+                    alert('Exporting users...');
+                },
+
+                bulkAction(action) {
+                    alert('Bulk ' + action + ' for ' + this.selectedUsers.length + ' users');
+                },
+
+                sendBulkInvites() {
+                    alert('Sending bulk invites...');
+                },
+
+                generateReport() {
+                    alert('Generating report...');
+                }
+            }));
+
+            Alpine.data('userForm', () => ({
+                form: { firstName: '', lastName: '', email: '', role: '', status: '', phone: '' },
+                saveUser() {
+                    alert('User saved!');
+                }
+            }));
+        });
+    </script>
 </body>
-</head></html> 
+</html>

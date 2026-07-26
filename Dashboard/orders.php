@@ -436,9 +436,100 @@ include 'header.php';
         </div>
     </div>
 
-    <!-- Page-specific Component -->
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('orderTable', () => ({
+                orders: [
+                    { id: 1, orderNumber: '#ORD-001', customer: { name: 'John Doe', email: 'john@example.com', avatar: 'assets/images/avatar-placeholder.svg' }, itemCount: 3, items: [{ name: 'Fresh Apples' }, { name: 'Organic Bananas' }, { name: 'Fresh Milk' }], total: 124.00, status: 'delivered', orderDate: '2025-01-15' },
+                    { id: 2, orderNumber: '#ORD-002', customer: { name: 'Jane Smith', email: 'jane@example.com', avatar: 'assets/images/avatar-placeholder.svg' }, itemCount: 2, items: [{ name: 'Wheat Bread' }, { name: 'Orange Juice' }], total: 89.99, status: 'processing', orderDate: '2025-01-15' },
+                    { id: 3, orderNumber: '#ORD-003', customer: { name: 'Mike Johnson', email: 'mike@example.com', avatar: 'assets/images/avatar-placeholder.svg' }, itemCount: 4, items: [{ name: 'Fresh Apples' }, { name: 'Fresh Milk' }, { name: 'Wheat Bread' }, { name: 'Orange Juice' }], total: 245.50, status: 'pending', orderDate: '2025-01-14' },
+                    { id: 4, orderNumber: '#ORD-004', customer: { name: 'Sarah Williams', email: 'sarah@example.com', avatar: 'assets/images/avatar-placeholder.svg' }, itemCount: 1, items: [{ name: 'Organic Bananas' }], total: 399.00, status: 'shipped', orderDate: '2025-01-14' },
+                    { id: 5, orderNumber: '#ORD-005', customer: { name: 'Alex Brown', email: 'alex@example.com', avatar: 'assets/images/avatar-placeholder.svg' }, itemCount: 2, items: [{ name: 'Fresh Apples' }, { name: 'Fresh Milk' }], total: 155.50, status: 'cancelled', orderDate: '2025-01-13' },
+                ],
+                searchQuery: '',
+                statusFilter: '',
+                dateFilter: '',
+                sortField: 'orderDate',
+                sortDirection: 'desc',
+                currentPage: 1,
+                itemsPerPage: 5,
+                selectedOrders: [],
 
-    <!-- Main App Script -->
-<script defer="" src="../../beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496-1" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"cd0b4b3a733644fc843ef0b185f98241","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+                get stats() {
+                    return {
+                        total: this.orders.length,
+                        pending: this.orders.filter(o => o.status === 'pending').length,
+                        shipped: this.orders.filter(o => o.status === 'shipped').length,
+                        revenue: this.orders.filter(o => o.status !== 'cancelled').reduce((sum, o) => sum + o.total, 0)
+                    }
+                },
+
+                get statusStats() {
+                    const counts = {};
+                    this.orders.forEach(o => { counts[o.status] = (counts[o.status] || 0) + 1; });
+                    const total = this.orders.length;
+                    return Object.entries(counts).map(([name, count]) => ({
+                        name: name.charAt(0).toUpperCase() + name.slice(1),
+                        count,
+                        percentage: total ? Math.round((count / total) * 100) : 0
+                    }));
+                },
+
+                get filteredOrders() {
+                    let items = [...this.orders];
+                    if (this.searchQuery) {
+                        items = items.filter(o => 
+                            o.orderNumber.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                            o.customer.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+                        );
+                    }
+                    if (this.statusFilter) items = items.filter(o => o.status === this.statusFilter);
+                    if (this.dateFilter === 'today') items = items.filter(o => o.orderDate === '2025-01-15');
+                    if (this.dateFilter === 'week') items = items.filter(o => o.orderDate >= '2025-01-13');
+                    if (this.dateFilter === 'month') items = items.filter(o => o.orderDate >= '2025-01-01');
+                    items.sort((a, b) => {
+                        let valA = a[this.sortField], valB = b[this.sortField];
+                        if (typeof valA === 'string') valA = valA.toLowerCase();
+                        if (typeof valB === 'string') valB = valB.toLowerCase();
+                        if (valA < valB) return this.sortDirection === 'asc' ? -1 : 1;
+                        if (valA > valB) return this.sortDirection === 'asc' ? 1 : -1;
+                        return 0;
+                    });
+                    return items;
+                },
+
+                get totalPages() { return Math.ceil(this.filteredOrders.length / this.itemsPerPage); },
+
+                get paginatedOrders() {
+                    const start = (this.currentPage - 1) * this.itemsPerPage;
+                    return this.filteredOrders.slice(start, start + this.itemsPerPage);
+                },
+
+                get visiblePages() {
+                    const pages = [];
+                    for (let i = 1; i <= this.totalPages; i++) pages.push(i);
+                    return pages;
+                },
+
+                init() { this.currentPage = 1; },
+                filterOrders() { this.currentPage = 1; },
+
+                sortBy(field) {
+                    if (this.sortField === field) this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+                    else { this.sortField = field; this.sortDirection = 'asc'; }
+                },
+
+                goToPage(page) { if (page >= 1 && page <= this.totalPages) this.currentPage = page; },
+                toggleAll(checked) { this.selectedOrders = checked ? this.filteredOrders.map(o => o.id) : []; },
+
+                viewOrder(order) { alert('Viewing order: ' + order.orderNumber); },
+                trackOrder(order) { alert('Tracking order: ' + order.orderNumber); },
+                printInvoice(order) { alert('Printing invoice for: ' + order.orderNumber); },
+                cancelOrder(order) { if (confirm('Cancel order ' + order.orderNumber + '?')) { this.orders = this.orders.filter(o => o.id !== order.id); } },
+                exportOrders() { alert('Exporting orders...'); },
+                bulkAction(action) { alert('Bulk ' + action + ' for ' + this.selectedOrders.length + ' orders'); }
+            }));
+        });
+    </script>
 </body>
 </html>

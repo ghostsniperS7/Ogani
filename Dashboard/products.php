@@ -413,9 +413,105 @@ include 'header.php';
         </div>
     </div>
 
-    <!-- Page-specific Component -->
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('productTable', () => ({
+                products: [
+                    { id: 1, name: 'Fresh Organic Apples', sku: 'FRT-001', category: 'Fruits', price: 4.99, stock: 150, status: 'published', image: 'assets/images/avatar-placeholder.svg', created: '2025-01-10' },
+                    { id: 2, name: 'Whole Wheat Bread', sku: 'BAK-001', category: 'Bakery', price: 3.49, stock: 80, status: 'published', image: 'assets/images/avatar-placeholder.svg', created: '2025-01-11' },
+                    { id: 3, name: 'Organic Milk 1L', sku: 'DRY-001', category: 'Dairy', price: 2.99, stock: 5, status: 'published', image: 'assets/images/avatar-placeholder.svg', created: '2025-01-12' },
+                    { id: 4, name: 'Free Range Eggs 12pk', sku: 'DRY-002', category: 'Dairy', price: 5.99, stock: 0, status: 'draft', image: 'assets/images/avatar-placeholder.svg', created: '2025-01-13' },
+                    { id: 5, name: 'Fresh Orange Juice', sku: 'DRY-003', category: 'Beverages', price: 4.49, stock: 45, status: 'published', image: 'assets/images/avatar-placeholder.svg', created: '2025-01-14' },
+                ],
+                searchQuery: '',
+                categoryFilter: '',
+                stockFilter: '',
+                sortField: 'name',
+                sortDirection: 'asc',
+                currentPage: 1,
+                itemsPerPage: 5,
+                selectedProducts: [],
 
-    <!-- Main App Script -->
-<script defer="" src="../../beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496-1" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"cd0b4b3a733644fc843ef0b185f98241","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+                get stats() {
+                    return {
+                        total: this.products.length,
+                        inStock: this.products.filter(p => p.stock > 20).length,
+                        lowStock: this.products.filter(p => p.stock > 0 && p.stock <= 20).length,
+                        totalValue: this.products.reduce((sum, p) => sum + (p.price * p.stock), 0)
+                    }
+                },
+
+                get categoryStats() {
+                    const counts = {};
+                    this.products.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
+                    const total = this.products.length;
+                    return Object.entries(counts).map(([name, count]) => ({
+                        name,
+                        count,
+                        percentage: total ? Math.round((count / total) * 100) : 0
+                    }));
+                },
+
+                get filteredProducts() {
+                    let items = [...this.products];
+                    if (this.searchQuery) {
+                        items = items.filter(p => 
+                            p.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                            p.sku.toLowerCase().includes(this.searchQuery.toLowerCase())
+                        );
+                    }
+                    if (this.categoryFilter) items = items.filter(p => p.category.toLowerCase() === this.categoryFilter.toLowerCase());
+                    if (this.stockFilter === 'in-stock') items = items.filter(p => p.stock > 20);
+                    if (this.stockFilter === 'low-stock') items = items.filter(p => p.stock > 0 && p.stock <= 20);
+                    if (this.stockFilter === 'out-of-stock') items = items.filter(p => p.stock === 0);
+                    items.sort((a, b) => {
+                        let valA = a[this.sortField], valB = b[this.sortField];
+                        if (typeof valA === 'string') valA = valA.toLowerCase();
+                        if (typeof valB === 'string') valB = valB.toLowerCase();
+                        if (valA < valB) return this.sortDirection === 'asc' ? -1 : 1;
+                        if (valA > valB) return this.sortDirection === 'asc' ? 1 : -1;
+                        return 0;
+                    });
+                    return items;
+                },
+
+                get totalPages() { return Math.ceil(this.filteredProducts.length / this.itemsPerPage); },
+
+                get paginatedProducts() {
+                    const start = (this.currentPage - 1) * this.itemsPerPage;
+                    return this.filteredProducts.slice(start, start + this.itemsPerPage);
+                },
+
+                get visiblePages() {
+                    const pages = [];
+                    for (let i = 1; i <= this.totalPages; i++) pages.push(i);
+                    return pages;
+                },
+
+                init() { this.currentPage = 1; },
+                filterProducts() { this.currentPage = 1; },
+
+                sortBy(field) {
+                    if (this.sortField === field) this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+                    else { this.sortField = field; this.sortDirection = 'asc'; }
+                },
+
+                goToPage(page) { if (page >= 1 && page <= this.totalPages) this.currentPage = page; },
+                toggleAll(checked) { this.selectedProducts = checked ? this.filteredProducts.map(p => p.id) : []; },
+
+                editProduct(product) { alert('Editing product: ' + product.name); },
+                viewProduct(product) { alert('Viewing product: ' + product.name); },
+                duplicateProduct(product) { alert('Duplicating product: ' + product.name); },
+                deleteProduct(product) { if (confirm('Delete ' + product.name + '?')) { this.products = this.products.filter(p => p.id !== product.id); } },
+                exportProducts() { alert('Exporting products...'); },
+                bulkAction(action) { alert('Bulk ' + action + ' for ' + this.selectedProducts.length + ' products'); }
+            }));
+
+            Alpine.data('productForm', () => ({
+                form: { name: '', sku: '', category: '', price: '', stock: '', description: '', status: '' },
+                saveProduct() { alert('Product saved!'); }
+            }));
+        });
+    </script>
 </body>
 </html>

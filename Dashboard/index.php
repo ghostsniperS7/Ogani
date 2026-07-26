@@ -1,5 +1,4 @@
 ﻿<?php
-
 include 'header.php';
 ?>
         <!-- Main Content -->
@@ -30,7 +29,7 @@ include 'header.php';
 
                 <!-- Stats Cards with Alpine.js -->
                 <div class="row g-3 g-lg-4 mb-4">
-                    <div class="col-sm-6 col-xl-3" x-data="statsCounter(12426, 5)">
+                    <div class="col-sm-6 col-xl-3">
                         <div class="card stats-card">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
@@ -41,7 +40,7 @@ include 'header.php';
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <p class="h6 mb-0 text-muted">Total Users</p>
-                                        <div class="h3 mb-0" aria-live="polite" data-stat-value=""><span x-text="value.toLocaleString()">12,426</span></div>
+                                        <div class="h3 mb-0">12,426</div>
                                         <small class="text-success-emphasis">
                                             <i class="bi bi-arrow-up"></i> +12.5%
                                         </small>
@@ -141,8 +140,8 @@ include 'header.php';
                             </div>
                             <div class="card-body">
                                 <div class="activity-feed">
-                                    <div class="activity-item">
-                                        <div class="activity-icon bg-primary bg-opacity-10 text-primary">
+                                    <div class="activity-item d-flex gap-3 mb-3">
+                                        <div class="activity-icon bg-primary bg-opacity-10 text-primary p-2 rounded-3">
                                             <i class="bi bi-person-plus"></i>
                                         </div>
                                         <div class="activity-content">
@@ -150,8 +149,8 @@ include 'header.php';
                                             <small class="text-muted">2 minutes ago</small>
                                         </div>
                                     </div>
-                                    <div class="activity-item">
-                                        <div class="activity-icon bg-success bg-opacity-10 text-success">
+                                    <div class="activity-item d-flex gap-3 mb-3">
+                                        <div class="activity-icon bg-success bg-opacity-10 text-success p-2 rounded-3">
                                             <i class="bi bi-bag-check"></i>
                                         </div>
                                         <div class="activity-content">
@@ -159,8 +158,8 @@ include 'header.php';
                                             <small class="text-muted">5 minutes ago</small>
                                         </div>
                                     </div>
-                                    <div class="activity-item">
-                                        <div class="activity-icon bg-warning bg-opacity-10 text-warning">
+                                    <div class="activity-item d-flex gap-3">
+                                        <div class="activity-icon bg-warning bg-opacity-10 text-warning p-2 rounded-3">
                                             <i class="bi bi-exclamation-triangle"></i>
                                         </div>
                                         <div class="activity-content">
@@ -199,15 +198,15 @@ include 'header.php';
                     </div>
                 </div>
 
-                <!-- New Widgets Row -->
+                <!-- Recent Orders & Storage Status -->
                 <div class="row g-4 mb-4">
-                    <!-- Recent Orders -->
                     <div class="col-lg-8">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header d-flex justify-content-between align-items-center">
                                 <h2 class="h5 card-title mb-0">Recent Orders</h2>
+                                <a href="orders.php" class="btn btn-sm btn-outline-primary">View All</a>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-hover mb-0">
                                         <thead class="table-light">
@@ -219,8 +218,55 @@ include 'header.php';
                                                 <th>Date</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="recent-orders-table">
-                                            <!-- Orders will be injected here by dashboard.js -->
+                                        <tbody>
+                                            <tr>
+                                                <td>#1234</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <img src="assets/images/avatar-placeholder.svg" alt="Customer" width="28" height="28" class="rounded-circle">
+                                                        <span>John Doe</span>
+                                                    </div>
+                                                </td>
+                                                <td>$124.00</td>
+                                                <td><span class="order-status status-delivered">Delivered</span></td>
+                                                <td>2025-01-15</td>
+                                            </tr>
+                                            <tr>
+                                                <td>#1235</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <img src="assets/images/avatar-placeholder.svg" alt="Customer" width="28" height="28" class="rounded-circle">
+                                                        <span>Jane Smith</span>
+                                                    </div>
+                                                </td>
+                                                <td>$89.99</td>
+                                                <td><span class="order-status status-processing">Processing</span></td>
+                                                <td>2025-01-15</td>
+                                            </tr>
+                                            <tr>
+                                                <td>#1236</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <img src="assets/images/avatar-placeholder.svg" alt="Customer" width="28" height="28" class="rounded-circle">
+                                                        <span>Mike Johnson</span>
+                                                    </div>
+                                                </td>
+                                                <td>$245.50</td>
+                                                <td><span class="order-status status-pending">Pending</span></td>
+                                                <td>2025-01-14</td>
+                                            </tr>
+                                            <tr>
+                                                <td>#1237</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <img src="assets/images/avatar-placeholder.svg" alt="Customer" width="28" height="28" class="rounded-circle">
+                                                        <span>Sarah Williams</span>
+                                                    </div>
+                                                </td>
+                                                <td>$399.00</td>
+                                                <td><span class="order-status status-shipped">Shipped</span></td>
+                                                <td>2025-01-14</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -228,14 +274,39 @@ include 'header.php';
                         </div>
                     </div>
 
-                    <!-- Storage Status -->
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="h5 card-title mb-0">Storage Status</h2>
                             </div>
                             <div class="card-body">
-                                <div id="storageStatusChart"></div>
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Used Storage</span>
+                                        <span>45%</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Bandwidth</span>
+                                        <span>68%</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Database</span>
+                                        <span>32%</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 32%" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -249,7 +320,7 @@ include 'header.php';
                                 <h2 class="h5 card-title mb-0">Sales by Location</h2>
                             </div>
                             <div class="card-body">
-                                <div id="salesByLocationChart" style="min-height: 400px; width: 100%;"></div>
+                                <div id="salesByLocationChart" style="min-height: 350px; width: 100%;"></div>
                             </div>
                         </div>
                     </div>
@@ -258,100 +329,12 @@ include 'header.php';
             </div>
         </main>
 
-        <!-- Footer -->
-
-        </div> <!-- /.admin-wrapper -->
-    
+    </div> <!-- /.admin-wrapper -->
 
     <!-- Toast Container -->
     <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 11">
         <div id="toast-container"></div>
     </div>
-
-
-    <!-- Icon Demo Modal -->
-    <div class="modal fade" id="iconDemoModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="bi bi-palette me-2"></i>
-                        Icon System Demo
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body" x-data="iconDemo">
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <h6>Current Provider: <span class="badge bg-primary" x-text="currentProvider"></span></h6>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-outline-primary" @click="switchProvider('bootstrap')" :class="{ 'active': currentProvider === 'bootstrap' }">
-                                    Bootstrap Icons
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" @click="switchProvider('lucide')" :class="{ 'active': currentProvider === 'lucide' }">
-                                    Lucide Icons
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row g-3">
-                        <div class="col-md-3 text-center">
-                            <div class="p-3 border rounded">
-                                <i class="bi bi-speedometer2 icon-xl text-primary mb-2"></i>
-                                <br><small>Dashboard</small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="p-3 border rounded">
-                                <i class="bi bi-people icon-xl text-success mb-2"></i>
-                                <br><small>Users</small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="p-3 border rounded">
-                                <i class="bi bi-graph-up icon-xl text-info mb-2"></i>
-                                <br><small>Analytics</small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="p-3 border rounded">
-                                <i class="bi bi-gear icon-xl text-warning mb-2"></i>
-                                <br><small>Settings</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h6 class="mt-4">Icon Animations</h6>
-                    <div class="row g-3">
-                        <div class="col-md-3 text-center">
-                            <i class="bi bi-arrow-clockwise icon-xl icon-spin text-primary"></i>
-                            <br><small>Spin</small>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <i class="bi bi-heart icon-xl icon-pulse text-danger"></i>
-                            <br><small>Pulse</small>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <i class="bi bi-star icon-xl icon-hover text-warning"></i>
-                            <br><small>Hover Effect</small>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <i class="bi bi-check-circle icon-xl text-success"></i>
-                            <br><small>Static</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="bi bi-x me-2"></i>Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
 
     <!-- New Item Modal -->
     <div class="modal fade" id="newItemModal" tabindex="-1" aria-labelledby="newItemModalLabel" aria-hidden="true">
@@ -389,7 +372,7 @@ include 'header.php';
                     <!-- Title -->
                     <div class="mb-3">
                         <label for="itemTitle" class="form-label fw-semibold">Title</label>
-                        <input type="text" class="form-control" id="itemTitle" x-model="title" placeholder="Enter a title..." autofocus="">
+                        <input type="text" class="form-control" id="itemTitle" x-model="title" placeholder="Enter a title...">
                     </div>
 
                     <!-- Description -->
@@ -398,10 +381,10 @@ include 'header.php';
                         <textarea class="form-control" id="itemDescription" rows="3" x-model="description" placeholder="Add some details..."></textarea>
                     </div>
 
-                    <!-- Priority (shown for tasks) -->
-                    <div class="mb-3" x-show="itemType === 'task'" x-transition="">
+                    <!-- Priority -->
+                    <div class="mb-3" x-show="itemType === 'task'" x-transition>
                         <label class="form-label fw-semibold d-block">Priority</label>
-                        <div class="btn-group" role="group" aria-label="Priority selection">
+                        <div class="btn-group" role="group">
                             <input type="radio" class="btn-check" name="priorityRadio" id="priorityLow" value="low" x-model="priority" autocomplete="off">
                             <label class="btn btn-outline-success btn-sm" for="priorityLow">
                                 <i class="bi bi-flag"></i> Low
@@ -417,14 +400,14 @@ include 'header.php';
                         </div>
                     </div>
 
-                    <!-- Date (shown for events/reminders) -->
-                    <div class="mb-3" x-show="itemType === 'event' || itemType === 'reminder'" x-transition="">
+                    <!-- Date -->
+                    <div class="mb-3" x-show="itemType === 'event' || itemType === 'reminder'" x-transition>
                         <label for="itemDate" class="form-label fw-semibold">Date & Time</label>
                         <input type="datetime-local" class="form-control" id="itemDate" x-model="dateTime">
                     </div>
 
-                    <!-- Assign to (shown for tasks) -->
-                    <div class="mb-3" x-show="itemType === 'task'" x-transition="">
+                    <!-- Assign to -->
+                    <div class="mb-3" x-show="itemType === 'task'" x-transition>
                         <label for="assignTo" class="form-label fw-semibold">Assign to</label>
                         <select class="form-select" id="assignTo" x-model="assignee">
                             <option value="">Select team member...</option>
@@ -444,6 +427,35 @@ include 'header.php';
             </div>
         </div>
     </div>
-<script defer="" src="../../beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496-1" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"cd0b4b3a733644fc843ef0b185f98241","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('quickAddForm', () => ({
+                itemType: 'task',
+                title: '',
+                description: '',
+                priority: 'medium',
+                dateTime: '',
+                assignee: '',
+                init() {
+                    let d = new Date();
+                    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+                    this.dateTime = d.toISOString().slice(0, 16);
+                },
+                resetForm() {
+                    this.itemType = 'task'; this.title = ''; this.description = '';
+                    this.priority = 'medium'; this.assignee = '';
+                    let d = new Date();
+                    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+                    this.dateTime = d.toISOString().slice(0, 16);
+                },
+                saveItem() {
+                    if (!this.title.trim()) { alert('Please enter a title'); return; }
+                    alert('"' + this.title + '" created successfully!');
+                    this.resetForm();
+                }
+            }));
+        });
+    </script>
 </body>
-</html> 
+</html>

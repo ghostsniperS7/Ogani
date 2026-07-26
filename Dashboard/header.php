@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
-<head><meta name="robots" content="noindex, nofollow">
-
-
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <!-- Meta Tags -->
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="description" content="Modern Bootstrap 5 Admin Template - Clean, responsive dashboard">
-    <meta name="keywords" content="bootstrap, admin, dashboard, template, modern, responsive">
-    <meta name="author" content="Bootstrap Admin Template">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Modern Bootstrap Admin Template">
-    <meta property="og:description" content="Clean and modern admin dashboard template built with Bootstrap 5">
-    <meta property="og:type" content="website">
+    <meta name="description" content="Ogani Admin Dashboard">
+    <meta name="theme-color" content="#7fad39">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
-    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
-    
-    <!-- Preconnect to external domains -->
-    
-    <style>
-</style>
-    
-    <!-- Fonts -->
-    <style type="text/css" media="print" onload="this.media='all';this.onload=null;">@font-face {font-family:Inter;font-style:normal;font-weight:300;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:300;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:300;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:300;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:300;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:300;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:300;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}</style>
     
     <!-- Title -->
-    <title>Dashboard - Modern Bootstrap Admin</title>
+    <title>Dashboard - Ogani Admin</title>
     
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#6366f1">
+    <!-- Bootstrap 5 CSS (CDN Fallback) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="assets/manifest-DTaoG9pG.json">
-  <script type="module" crossorigin="" src="assets/rolldown-runtime-QTnfLwEv.js"></script>
-  <script type="module" crossorigin="" src="assets/vendor-bootstrap-DgdwyLYF.js"></script>
-  <script type="module" crossorigin="" src="assets/vendor-ui-DCXHuVks.js"></script>
-  <script type="module" crossorigin="" src="assets/vendor-charts-Dcrko_Gn.js"></script>
-  <script type="module" crossorigin="" src="assets/main-Ynqz-sB_.js"></script>
-  <link rel="stylesheet" crossorigin="" href="assets/main-DAEQKee6.css" fetchpriority="high">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Main Dashboard CSS -->
+    <link rel="stylesheet" href="assets/main-DAEQKee6.css">
+    
+    <!-- Custom Dashboard CSS -->
+    <link rel="stylesheet" href="assets/custom.css">
+    
+    <!-- Bootstrap 5 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Alpine.js (CDN) - loaded after Bootstrap -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+    
+    <script>
+        // Hide loading screen immediately
+        (function() {
+            var ls = document.getElementById('loading-screen');
+            if (ls) { ls.style.display = 'none'; }
+        })();
+        setTimeout(function() {
+            var ls = document.getElementById('loading-screen');
+            if (ls) { ls.style.display = 'none'; }
+        }, 1500);
+    </script>
 </head>
 
 <body data-page="dashboard" class="admin-layout">
     <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
+    <div id="loading-screen" class="loading-screen" style="display:none;">
         <div class="loading-spinner">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -64,9 +62,9 @@
         <header class="admin-header">
             <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
                 <div class="container-fluid">
-                    <!-- Logo/Brand - Now first on the left -->
+                    <!-- Logo -->
                     <a class="navbar-brand d-flex align-items-center ms-5" href="index.php">
-                        <img src="assets/images/logo.png" alt="Logo" height="32" class="d-inline-block align-text-top me-2" fetchpriority="high" decoding="sync">
+                        <img src="assets/images/logo.png" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
                     </a>
 
                     <!-- Sidebar Toggle -->
@@ -74,14 +72,13 @@
                         <i class="bi bi-list"></i>
                     </button>
 
-                    <!-- Search Bar with Alpine.js -->
+                    <!-- Search Bar -->
                     <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">
                         <div class="position-relative">
                             <input type="search" class="form-control" placeholder="Search... (Ctrl+K)" x-model="query" @input="search()" data-search-input="" aria-label="Search">
                             <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"></i>
                             
-                            <!-- Search Results Dropdown -->
-                            <div x-show="results.length > 0" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" class="position-absolute top-100 start-0 w-100 bg-white border rounded-2 shadow-lg mt-1 z-3">
+                            <div x-show="results.length > 0" class="position-absolute top-100 start-0 w-100 bg-white border rounded-2 shadow-lg mt-1 z-3">
                                 <template x-for="result in results" :key="result.title">
                                     <a :href="result.url" class="d-block px-3 py-2 text-decoration-none text-dark border-bottom">
                                         <div class="d-flex align-items-center">
@@ -97,26 +94,24 @@
 
                     <!-- Right Side Icons -->
                     <div class="navbar-nav flex-row">
-                        <!-- Theme Toggle with Alpine.js -->
+                        <!-- Theme Toggle -->
                         <div x-data="themeSwitch">
-                            <button class="btn btn-outline-secondary me-2" type="button" @click="toggle()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle theme">
+                            <button class="btn btn-outline-secondary me-2" type="button" @click="toggle()" data-bs-toggle="tooltip" title="Toggle theme">
                                 <i class="bi bi-sun-fill" x-show="currentTheme === 'light'"></i>
                                 <i class="bi bi-moon-fill" x-show="currentTheme === 'dark'"></i>
                             </button>
                         </div>
 
-                        <!-- Fullscreen Toggle (hidden on phones) -->
-                        <button class="btn btn-outline-secondary me-2 d-none d-lg-inline-block" type="button" data-fullscreen-toggle="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle fullscreen">
+                        <!-- Fullscreen Toggle -->
+                        <button class="btn btn-outline-secondary me-2 d-none d-lg-inline-block" type="button" data-fullscreen-toggle="" data-bs-toggle="tooltip" title="Toggle fullscreen">
                             <i class="bi bi-arrows-fullscreen icon-hover"></i>
                         </button>
 
                         <!-- Notifications -->
                         <div class="dropdown me-2">
-                            <button class="btn btn-outline-secondary position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-outline-secondary position-relative" type="button" data-bs-toggle="dropdown">
                                 <i class="bi bi-bell"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    3
-                                </span>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><h6 class="dropdown-header">Notifications</h6></li>
@@ -130,8 +125,8 @@
 
                         <!-- User Menu -->
                         <div class="dropdown">
-                            <button class="btn btn-outline-secondary d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/images/avatar-placeholder.svg" alt="User Avatar" width="24" height="24" class="rounded-circle me-2" fetchpriority="high" decoding="sync">
+                            <button class="btn btn-outline-secondary d-flex align-items-center" type="button" data-bs-toggle="dropdown">
+                                <img src="assets/images/avatar-placeholder.svg" alt="User Avatar" width="24" height="24" class="rounded-circle me-2">
                                 <span class="d-none d-md-inline">John Doe</span>
                                 <i class="bi bi-chevron-down ms-1"></i>
                             </button>
@@ -164,7 +159,7 @@
                                 <span>Users</span>
                             </a>
                         </li>
-                            <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="category.php">
                                 <i class="bi bi-list"></i>
                                 <span>Category</span>
@@ -189,3 +184,101 @@
 
         <!-- Sidebar Backdrop (mobile overlay) -->
         <div class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- Alpine.js Component Definitions (must be after Alpine loads) -->
+    <script>
+        document.addEventListener('alpine:init', function() {
+            Alpine.data('searchComponent', function() { 
+                return {
+                    query: '',
+                    results: [],
+                    isLoading: false,
+                    async search() {
+                        if (this.query.length < 2) { this.results = []; return; }
+                        this.isLoading = true;
+                        var self = this;
+                        await new Promise(function(r) { setTimeout(r, 300); });
+                        self.results = [
+                            { title: 'Dashboard', url: 'index.php', type: 'page' },
+                            { title: 'Users', url: 'users.php', type: 'page' },
+                            { title: 'Categories', url: 'category.php', type: 'page' },
+                            { title: 'Products', url: 'product.php', type: 'page' },
+                            { title: 'Orders', url: 'orders.php', type: 'page' }
+                        ].filter(function(r) { return r.title.toLowerCase().includes(self.query.toLowerCase()); });
+                        self.isLoading = false;
+                    }
+                };
+            });
+
+            Alpine.data('themeSwitch', function() {
+                return {
+                    currentTheme: 'light',
+                    init() {
+                        this.currentTheme = localStorage.getItem('theme') || 'light';
+                        document.documentElement.setAttribute('data-bs-theme', this.currentTheme);
+                    },
+                    toggle() {
+                        this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                        document.documentElement.setAttribute('data-bs-theme', this.currentTheme);
+                        localStorage.setItem('theme', this.currentTheme);
+                    }
+                };
+            });
+        });
+    </script>
+
+    <!-- Initialize Bootstrap components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize dropdowns
+            var dropdowns = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+            dropdowns.forEach(function(el) {
+                try { new bootstrap.Dropdown(el); } catch(e) {}
+            });
+            // Initialize tooltips
+            var tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            tooltips.forEach(function(el) {
+                try { new bootstrap.Tooltip(el); } catch(e) {}
+            });
+            
+            // Sidebar toggle
+            var sidebarToggle = document.querySelector('[data-sidebar-toggle]');
+            var sidebar = document.getElementById('admin-sidebar');
+            var backdrop = document.querySelector('.sidebar-backdrop');
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                    if (backdrop) backdrop.classList.toggle('show');
+                });
+            }
+            if (backdrop) {
+                backdrop.addEventListener('click', function() {
+                    sidebar.classList.remove('show');
+                    backdrop.classList.remove('show');
+                });
+            }
+            
+            // Fullscreen toggle
+            var fullscreenToggle = document.querySelector('[data-fullscreen-toggle]');
+            if (fullscreenToggle) {
+                fullscreenToggle.addEventListener('click', function() {
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen();
+                    } else {
+                        if (document.exitFullscreen) document.exitFullscreen();
+                    }
+                });
+            }
+            
+            // Ctrl+K shortcut for search
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    var searchInput = document.querySelector('[data-search-input]');
+                    if (searchInput) searchInput.focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
