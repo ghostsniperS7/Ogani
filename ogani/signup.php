@@ -110,7 +110,7 @@ include 'header.php';
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="site-btn">Sign in</button>
+                            <button type="submit" name="btn" class="site-btn">Sign in</button>
                     </div>
                 </form>
             </div>
@@ -123,5 +123,15 @@ include 'footer.php';
 
 <?php
 include('../dashboard/connect.php');
+if(isset($_POST['btn'])){
+    $u_name = $_POST['u_name'];
+    $u_email = $_POST['$u_email'];
+    $u_password = $_POST['$u_password'];
+    $u_phone = $_POST['$u_phone'];
+    $query = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `role`) VALUES ('$u_name','$u_email','$u_password','$u_phone','Customer')";
+    $execute = mysqli_query($con, $query);
+    if($execute){
 
+    }
+}
 ?>
