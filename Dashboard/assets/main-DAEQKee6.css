@@ -12,7 +12,7 @@
     --box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
     --box-shadow-sm: 0 1px 2px 0 #0000000d;
     --box-shadow-lg: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
-    --bs-primary-text-emphasis: #4338ca;
+    --bs-primary-text-emphasis: #7fad39;
     --bs-success-text-emphasis: #047857;
     --bs-danger-text-emphasis: #b91c1c;
     --bs-warning-text-emphasis: #b45309;
@@ -5318,7 +5318,7 @@ fieldset:disabled .btn {
     --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
     --bs-dropdown-link-hover-bg: #ffffff26;
     --bs-dropdown-link-active-color: #fff;
-    --bs-dropdown-link-active-bg: #6366f1;
+    --bs-dropdown-link-active-bg: #7fad39;
     --bs-dropdown-link-disabled-color: #64748b;
     --bs-dropdown-header-color: #64748b
 }
@@ -24898,7 +24898,7 @@ fieldset:disabled .btn {
 }
 
 [data-bs-theme=dark] .stats-card .stats-icon.bg-primary {
-    background-color: #6366f133 !important
+    background-color: #7fad39 !important
 }
 
 [data-bs-theme=dark] .stats-card .stats-icon.bg-success {
