@@ -1,7 +1,7 @@
 <?php 
 // 1. Connection file
 include('../dashboard/connect.php'); 
-session_start();
+
 
 // 2. Login Logic
 if(isset($_POST['btn'])){
@@ -12,21 +12,18 @@ if(isset($_POST['btn'])){
     $query = "SELECT * FROM `users` WHERE `email` = '$u_email' AND `password` = '$u_password'";
     $execute = mysqli_query($con, $query);
 
-    if($execute && mysqli_num_rows($execute) > 0){
+    if(mysqli_num_rows($execute) > 0){
         $row = mysqli_fetch_assoc($execute);
         $_SESSION['id'] = $row['id'];
         $_SESSION['name'] = $row['name'];
         $_SESSION['role'] = $row['role'];
     
-        if($_SESSION['role'] == 'Admin'){
+        if($_SESSION['role'] == 'admin'){
             echo "<script>window.location.href='../dashboard/index.php'</script>";
         } else {
             echo "<script>window.location.href='index.php'</script>";
         }
-    } else {
-        // Galat email ya password par alert
-        echo "<script>alert('Invalid Email or Password!');</script>";
-    }
+    } 
 }
 include 'header.php';
 ?>
