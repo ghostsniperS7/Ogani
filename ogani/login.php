@@ -1,14 +1,25 @@
-<?php 
-// 1. Connection file
+<?php
+session_start();
+
+// Redirect if already logged in
+if(isset($_SESSION['name'])){
+    if($_SESSION['role'] == 'admin'){
+        echo "<script>window.location.href='../dashboard/index.php'</script>";
+    } else {
+        echo "<script>window.location.href='index.php'</script>";
+    }
+    exit();
+}
+
 include('../dashboard/connect.php'); 
 
+$error = '';
 
-// 2. Login Logic
+// Login Logic
 if(isset($_POST['btn'])){
     $u_email = $_POST['u_email'];
     $u_password = $_POST['u_password'];
     
-    // Galti Theek Ki: Yahan variables par single quotes ('$u_email') lagaye hain
     $query = "SELECT * FROM `users` WHERE `email` = '$u_email' AND `password` = '$u_password'";
     $execute = mysqli_query($con, $query);
 
@@ -23,16 +34,25 @@ if(isset($_POST['btn'])){
         } else {
             echo "<script>window.location.href='index.php'</script>";
         }
-    } 
+        exit();
+    } else {
+        $error = "Invalid email or password. Please try again.";
+    }
 }
+
 include 'header.php';
 ?>
 
-<!-- Checkout Section Begin -->
+<!-- Login Section Begin -->
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
-            <h4>Login Details</h4>
+            <h4>Login</h4>
+            
+            <?php if($error): ?>
+                <div class="alert alert-danger"><?php echo $error; ?></div>
+            <?php endif; ?>
+            
             <form action="" method="post">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
@@ -49,14 +69,18 @@ include 'header.php';
                             </div>
                         </div>
                         <button type="submit" name="btn" class="site-btn">Log in</button>
+                        <p class="mt-3">
+                            Don't have an account? <a href="signup.php"><strong>Sign up here</strong></a>
+                        </p>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </section>
-<!-- Checkout Section End -->
+<!-- Login Section End -->
 
 <?php
 include 'footer.php';
 ?>
+

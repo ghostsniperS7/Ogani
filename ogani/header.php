@@ -59,12 +59,18 @@ session_start();
                     <li><a href="#">English</a></li>
                 </ul>
             </div>
-            <div class="header__top__right__auth">
-                <a href="signup.php"><i class="fa fa-user"></i> Login/Signup</a>
-            </div>
+            <?php if(isset($_SESSION['name'])){ ?>
                 <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i><?php echo $_SESSION['name'];?></a>
-            </div>
+                    <a href="#"><i class="fa fa-user"></i><?php echo $_SESSION['name'];?></a>
+                </div>
+                <div class="header__top__right__auth">
+                    <a href="../Dashboard/logout.php" class="text-danger"><i class="fa fa-sign-out"></i> Logout</a>
+                </div>
+            <?php } else { ?>
+                <div class="header__top__right__auth">
+                    <a href="signup.php"><i class="fa fa-user"></i> Login/Signup</a>
+                </div>
+            <?php } ?>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
@@ -128,12 +134,18 @@ session_start();
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="signup.php"><i class="fa fa-user"></i> Login/Signup</a>
-                            </div>
+                            <?php if(isset($_SESSION['name'])){ ?>
                                 <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i><?php echo $_SESSION['name'];?></a>
-                            </div>
+                                    <a href="#"><i class="fa fa-user"></i><?php echo $_SESSION['name'];?></a>
+                                </div>
+                                <div class="header__top__right__auth">
+                                    <a href="../Dashboard/logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                </div>
+                            <?php } else { ?>
+                                <div class="header__top__right__auth">
+                                    <a href="signup.php"><i class="fa fa-user"></i> Login/Signup</a>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
