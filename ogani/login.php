@@ -1,14 +1,20 @@
 <?php 
-// 1. Connection file
+session_start();
 include('../dashboard/connect.php'); 
 
+$error = '';
 
-// 2. Login Logic
+// Agar pehle se logged in hai to redirect
+if(isset($_SESSION['name'])){
+    echo "<script>window.location.href='index.php'</script>";
+    exit();
+}
+
+// Login Logic
 if(isset($_POST['btn'])){
     $u_email = $_POST['u_email'];
     $u_password = $_POST['u_password'];
     
-    // Galti Theek Ki: Yahan variables par single quotes ('$u_email') lagaye hain
     $query = "SELECT * FROM `users` WHERE `email` = '$u_email' AND `password` = '$u_password'";
     $execute = mysqli_query($con, $query);
 
@@ -23,6 +29,8 @@ if(isset($_POST['btn'])){
         } else {
             echo "<script>window.location.href='index.php'</script>";
         }
+    } else {
+        $error = "Invalid email or password!";
     } 
 }
 include 'header.php';
@@ -33,6 +41,14 @@ include 'header.php';
     <div class="container">
         <div class="checkout__form">
             <h4>Login Details</h4>
+            <?php if($error): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fa fa-exclamation-circle"></i> <?php echo $error; ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
             <form action="" method="post">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
@@ -49,6 +65,9 @@ include 'header.php';
                             </div>
                         </div>
                         <button type="submit" name="btn" class="site-btn">Log in</button>
+                        <div class="mt-3">
+                            <a href="signup.php" class="text-success">Don't have an account? Sign up here</a>
+                        </div>
                     </div>
                 </div>
             </form>

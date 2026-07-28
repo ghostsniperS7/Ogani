@@ -1,23 +1,24 @@
 <?php 
-// 1. Connection file ko sabse upar include kiya taake $con ka error khatam ho
 include('../dashboard/connect.php'); 
 
-// 2. Data insert karne ka logic aur alert conditions
 if(isset($_POST['btn'])){
     $u_name = $_POST['u_name'];
-    
-    // Yahan se $_POST ke andar se '$' ka sign hata diya hai
     $u_email = $_POST['u_email'];
     $u_password = $_POST['u_password'];
+    $u_cpassword = $_POST['u_confirm_password'];
     $u_phone = $_POST['u_phone'];
     
-    $query = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `role`) VALUES ('$u_name','$u_email','$u_password','$u_phone','Customer')";
-    $execute = mysqli_query($con, $query);
-    
-    if($execute){
-        echo "<script>alert('Account successfully created!');</script>";
+    if($u_password !== $u_cpassword) {
+        echo "<script>alert('Passwords do not match!');</script>";
     } else {
-        echo "<script>alert('Error: Data could not be inserted.');</script>";
+        $query = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `role`) VALUES ('$u_name','$u_email','$u_password','$u_phone','Customer')";
+        $execute = mysqli_query($con, $query);
+        
+        if($execute){
+            echo "<script>alert('Account successfully created!'); window.location.href='login.php';</script>";
+        } else {
+            echo "<script>alert('Error: Data could not be inserted.');</script>";
+        }
     }
 }
 
@@ -60,8 +61,17 @@ include 'header.php';
                                         <input type="password" name="u_password">
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Confirm Password<span>*</span></p>
+                                        <input type="password" name="u_confirm_password" placeholder="Re-enter your password">
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" name="btn" class="site-btn">Sign in</button>
+                            <button type="submit" name="btn" class="site-btn">Sign Up</button>
+                            <div class="mt-3">
+                                <a href="login.php" class="text-success">Already have an account? Login here</a>
+                            </div>
                     </div>
                 </form>
             </div>
@@ -71,17 +81,3 @@ include 'header.php';
 <?php
 include 'footer.php';
 ?>
-
-
-// include('../dashboard/connect.php');
-// if(isset($_POST['btn'])){
-//     $u_name = $_POST['u_name'];
-//     $u_email = $_POST['$u_email'];
-//     $u_password = $_POST['$u_password'];
-//     $u_phone = $_POST['$u_phone'];
-//     $query = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `role`) VALUES ('$u_name','$u_email','$u_password','$u_phone','Customer')";
-//     $execute = mysqli_query($con, $query);
-//     if($execute){
-
-//     }
-// }
