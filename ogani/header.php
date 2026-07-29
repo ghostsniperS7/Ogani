@@ -130,7 +130,7 @@ session_start();
                             </div>
 
 <?php
-                            if(isset($_SESSION['name'])) {
+                            if(isset($_SESSION['role']) && $_SESSION['role'] === 'Customer') {
                                 echo '<div class="header__top__right__auth">
                                         <a href="#"><i class="fa fa-user"></i>' . $_SESSION['name'] . '</a>
                                       </div>';
