@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include('../dashboard/connect.php'); 
 
 $error = '';

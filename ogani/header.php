@@ -128,12 +128,32 @@ session_start();
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="signup.php"><i class="fa fa-user"></i> Login/Signup</a>
-                            </div>
-                                <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i><?php echo $_SESSION['name'];?></a>
-                            </div>
+
+<?php
+                            if(isset($_SESSION['name'])) {
+                                echo '<div class="header__top__right__auth">
+                                        <a href="#"><i class="fa fa-user"></i>' . $_SESSION['name'] . '</a>
+                                      </div>';
+                                       echo '<div class="header__top__right__auth">
+                                        <a href="../dashboard/logout.php"><i class="fa fa-user"></i> Logout</a>
+                                      </div>';
+                            } else {
+                                echo '<div class="header__top__right__auth">
+                                        <a href="signup.php"><i class="fa fa-user"></i>Signup</a>
+                                      </div>';
+                                        echo '<div class="header__top__right__auth">
+                                        <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                                      </div>';
+                            }
+?>
+                           
+
+
+
+
+                         
+
+
                         </div>
                     </div>
                 </div>
