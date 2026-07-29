@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_id() == '') {
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
@@ -132,7 +134,7 @@ session_start();
 <?php
                             if(isset($_SESSION['role']) && $_SESSION['role'] === 'Customer') {
                                 echo '<div class="header__top__right__auth">
-                                        <a href="#"><i class="fa fa-user"></i>' . $_SESSION['name'] . '</a>
+                                        <a href="#"><i class="fa fa-user"></i>' . $_SESSION['name'] ??"". '</a>
                                       </div>';
                                        echo '<div class="header__top__right__auth">
                                         <a href="../dashboard/logout.php"><i class="fa fa-user"></i> Logout</a>

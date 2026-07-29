@@ -1,6 +1,8 @@
                                     <?php
-                                    session_start();
-                                    ?>
+if (session_id() == '') {
+    session_start();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">

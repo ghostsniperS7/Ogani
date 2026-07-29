@@ -1,13 +1,13 @@
 <?php 
 include('../dashboard/connect.php'); 
 
-$error = '';
+// $error = '';
 
-// Agar pehle se logged in hai to redirect
-if(isset($_SESSION['name'])){
-    echo "<script>window.location.href='index.php'</script>";
-    exit();
-}
+// // Agar pehle se logged in hai to redirect
+// if(isset($_SESSION['name'])){
+//     echo "<script>window.location.href='index.php'</script>";
+//     exit();
+// }
 
 // Login Logic
 if(isset($_POST['btn'])){
@@ -28,8 +28,6 @@ if(isset($_POST['btn'])){
         } else {
             echo "<script>window.location.href='index.php'</script>";
         }
-    } else {
-        $error = "Invalid email or password!";
     } 
 }
 include 'header.php';
@@ -40,14 +38,14 @@ include 'header.php';
     <div class="container">
         <div class="checkout__form">
             <h4>Login Details</h4>
-            <?php if($error): ?>
+            
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <i class="fa fa-exclamation-circle"></i> <?php echo $error; ?>
+                    <i class="fa fa-exclamation-circle"></i> 
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            <?php endif; ?>
+            
             <form action="" method="post">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
