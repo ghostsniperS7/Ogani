@@ -133,7 +133,10 @@
                                 <img src="assets/images/avatar-placeholder.svg" alt="User Avatar" width="24" height="24" class="rounded-circle me-2">
                                 <span class="d-none d-md-inline">
                                     <?php
-                                    echo $_SESSION['name']; 
+                                    if ($_SESSION['role'] == 'admin') {
+                                        echo $_SESSION['name'];
+                                    } 
+                                    
                                     ?>
                                 </span>
                                 <i class="bi bi-chevron-down ms-1"></i>
