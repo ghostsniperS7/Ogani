@@ -1,13 +1,7 @@
 <?php 
 include('../dashboard/connect.php'); 
 
-// $error = '';
-
-// // Agar pehle se logged in hai to redirect
-// if(isset($_SESSION['name'])){
-//     echo "<script>window.location.href='index.php'</script>";
-//     exit();
-// }
+$error = "";
 
 // Login Logic
 if(isset($_POST['btn'])){
@@ -20,17 +14,21 @@ if(isset($_POST['btn'])){
     if(mysqli_num_rows($execute) > 0){
         $row = mysqli_fetch_assoc($execute);
         $_SESSION['id'] = $row['id'];
-        $_SESSION['name'] = $row['name']??"";
-        $_SESSION['role'] = $row['role']??"";
+        $_SESSION['name'] = $row['name'] ?? "";
+        $_SESSION['role'] = $row['role'] ?? "";
     
         if($_SESSION['role'] == 'admin'){
             echo "<script>window.location.href='../dashboard/index.php'</script>";
         } else {
             echo "<script>window.location.href='index.php'</script>";
         }
-    } 
+    } else {
+        $error = "Invalid Email or Password";
+    }
 }
+
 include 'header.php';
+
 ?>
 
 <!-- Checkout Section Begin -->
